@@ -11,6 +11,12 @@ const quizContainer = document.getElementById('quiz-container');
 const submitBtn    = document.getElementById('submit-btn');
 const submitHint   = document.getElementById('submit-hint');
 const successMsg   = document.getElementById('success-message');
+const errorModal      = document.getElementById('error-modal');
+const errorModalText  = document.getElementById('error-modal-text');
+const errorModalClose = document.getElementById('error-modal-close');
+const errorProgressFill = document.getElementById('error-progress-fill');
+
+const ERROR_MODAL_DURATION = 4000; // ms before X becomes clickable
 
 // ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nameInput.addEventListener('input', checkSubmitEligibility);
   submitBtn.addEventListener('click', handleSubmit);
+  errorModalClose.addEventListener('click', closeErrorModal);
 });
 
 // ===== Render Quiz =====
@@ -108,17 +115,53 @@ function handleOptionClick(questionId, option, clickedBtn, optionsList, errorEl)
       btn.classList.remove('wrong');
     });
 
-    // Mark this button as wrong
+    // Mark this button as wrong + shake
     clickedBtn.classList.add('wrong');
-
-    // Show error message
-    errorEl.textContent = option.errorMessage;
-    errorEl.classList.add('visible');
-
-    // Remove the .wrong class after animation ends so the user can retry
     clickedBtn.addEventListener('animationend', () => {
       clickedBtn.classList.remove('wrong');
     }, { once: true });
+
+    // Show error modal — when closed, also show inline error below question
+    showErrorModal(option.errorMessage, () => {
+      errorEl.textContent = option.errorMessage;
+      errorEl.classList.add('visible');
+    });
+  }
+}
+
+// ===== Error Modal =====
+let _modalCloseCallback = null;
+
+function showErrorModal(message, onClose) {
+  _modalCloseCallback = onClose;
+
+  errorModalText.textContent = message;
+  errorModalClose.disabled = true;
+  errorProgressFill.style.transition = 'none';
+  errorProgressFill.style.width = '0%';
+  errorModal.removeAttribute('hidden');
+
+  // Force reflow so the transition restarts cleanly
+  void errorProgressFill.offsetWidth;
+
+  errorProgressFill.style.transition = `width ${ERROR_MODAL_DURATION}ms linear`;
+  errorProgressFill.style.width = '100%';
+
+  setTimeout(() => {
+    errorModalClose.disabled = false;
+    errorModalClose.focus();
+  }, ERROR_MODAL_DURATION);
+}
+
+function closeErrorModal() {
+  errorModal.setAttribute('hidden', '');
+  errorProgressFill.style.transition = 'none';
+  errorProgressFill.style.width = '0%';
+  errorModalClose.disabled = true;
+
+  if (_modalCloseCallback) {
+    _modalCloseCallback();
+    _modalCloseCallback = null;
   }
 }
 
