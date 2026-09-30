@@ -1,0 +1,407 @@
+/* ===== CSS Custom Properties ===== */
+:root {
+  --olive:        #3a4230;
+  --olive-light:  #4f5c43;
+  --accent:       #6b7a5c;
+  --accent-light: #8a9a78;
+  --dark:         #1a1d17;
+  --text:         #1e2118;
+  --text-muted:   #5a5f52;
+  --bg:           #f4f5f0;
+  --card-bg:      #ffffff;
+  --border:       #d0d4c8;
+  --correct:      #2e7d32;
+  --correct-bg:   #e8f5e9;
+  --wrong:        #c62828;
+  --wrong-bg:     #ffebee;
+  --radius:       10px;
+  --shadow:       0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+/* ===== Header ===== */
+.app-header {
+  background: var(--olive);
+  color: #fff;
+  padding: 1.4rem 1rem 1.2rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.30);
+}
+
+.header-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header-badge {
+  font-size: 1.5rem;
+  color: #c8d4a0;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: #b8c8a0;
+  margin-top: 0.25rem;
+  font-weight: 400;
+}
+
+/* ===== Layout Container ===== */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== Instructions Card ===== */
+.instructions-card {
+  background: var(--olive-light);
+  color: #e8eee0;
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.instructions-card strong {
+  color: #d4e8b0;
+}
+
+/* ===== Name Input Section ===== */
+.name-section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.name-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--olive);
+}
+
+.required {
+  color: var(--wrong);
+}
+
+#name-input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  direction: rtl;
+  transition: border-color 0.2s;
+  color: var(--text);
+  background: #fafafa;
+}
+
+#name-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+}
+
+#name-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== Loading Indicator ===== */
+.loading-indicator {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* ===== Question Cards ===== */
+.question-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.1rem 1rem 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+}
+
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.question-number {
+  background: var(--olive);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50%;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.question-text {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* ===== Option Buttons ===== */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.option-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.7rem 0.9rem;
+  background: #f8f9f5;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  text-align: right;
+  direction: rtl;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #f0f3ea;
+}
+
+.option-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Correct state */
+.option-btn.correct {
+  border-color: var(--correct);
+  background: var(--correct-bg);
+  color: var(--correct);
+  font-weight: 700;
+  cursor: default;
+}
+
+.option-btn.correct::before {
+  content: '✔';
+  color: var(--correct);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Wrong state */
+.option-btn.wrong {
+  border-color: var(--wrong);
+  background: var(--wrong-bg);
+  color: var(--wrong);
+  animation: shake 0.4s ease;
+}
+
+.option-btn.wrong::before {
+  content: '✘';
+  color: var(--wrong);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Disabled (after correct answer chosen) */
+.option-btn:disabled:not(.correct) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ===== Shake Animation ===== */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-6px); }
+  40%  { transform: translateX(6px); }
+  60%  { transform: translateX(-4px); }
+  80%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ===== Error Message ===== */
+.error-message {
+  display: none;
+  margin-top: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--wrong-bg);
+  border-right: 3px solid var(--wrong);
+  border-radius: 6px;
+  color: var(--wrong);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.error-message.visible {
+  display: block;
+}
+
+/* ===== Submit Section ===== */
+.submit-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0 0.5rem;
+}
+
+#submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--olive);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s, transform 0.1s;
+  box-shadow: 0 3px 8px rgba(58,66,48,0.35);
+}
+
+#submit-btn:hover:not(:disabled) {
+  background: var(--olive-light);
+}
+
+#submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+#submit-btn:disabled {
+  background: #b0b8a8;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ===== Success Overlay ===== */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 29, 23, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.success-overlay[hidden] {
+  display: none;
+}
+
+.success-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: var(--correct);
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.success-card h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--correct);
+  margin-bottom: 0.5rem;
+}
+
+.success-card p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 480px) {
+  .container {
+    padding: 1.25rem 1rem;
+  }
+
+  .question-text {
+    font-size: 1rem;
+  }
+
+  .option-btn {
+    font-size: 0.95rem;
+  }
+}

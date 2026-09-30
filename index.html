@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#3a4230" />
+  <title>בוחן בטיחות – נסיעה לאחור</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-badge">★</div>
+      <h1>בוחן בטיחות</h1>
+      <p class="header-subtitle">נסיעה לאחור ושימוש במכווין</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="instructions-card">
+      <p>
+        בוחן זה בודק את ידיעתך בנהלי הבטיחות לנסיעה לאחור ברכב צבאי.
+        יש לענות נכון על <strong>כל השאלות</strong> ולמלא שם מלא לפני ההגשה.
+      </p>
+    </section>
+
+    <section class="name-section">
+      <label for="name-input" class="name-label">שם מלא <span class="required">*</span></label>
+      <input
+        type="text"
+        id="name-input"
+        placeholder="הכנס שם מלא..."
+        autocomplete="name"
+        required
+      />
+    </section>
+
+    <div id="quiz-container">
+      <!-- Questions rendered by app.js -->
+      <div class="loading-indicator">טוען שאלות...</div>
+    </div>
+
+    <div class="submit-section">
+      <button id="submit-btn" disabled>
+        שליחת בוחן
+      </button>
+      <p class="submit-hint" id="submit-hint">יש לענות נכון על כל השאלות ולמלא שם מלא.</p>
+    </div>
+
+  </main>
+
+  <div id="success-message" class="success-overlay" hidden>
+    <div class="success-card">
+      <div class="success-icon">✔</div>
+      <h2>הבוחן הוגש בהצלחה!</h2>
+      <p>סעו בזהירות.</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
